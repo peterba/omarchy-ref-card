@@ -11,6 +11,11 @@ print, fold, and keep beside your keyboard.
 - [US Letter](https://github.com/peterba/omarchy-ref-card/releases/latest/download/omarchy-reference-card-letter.pdf)
 - [A4](https://github.com/peterba/omarchy-ref-card/releases/latest/download/omarchy-reference-card-a4.pdf)
 
+[![Preview of both sides of the Omarchy Reference Card](docs/images/omarchy-reference-card-preview.png)](https://github.com/peterba/omarchy-ref-card/releases/latest/download/omarchy-reference-card-letter.pdf)
+
+*Both sides of the US Letter card; the A4 edition uses the same six-panel
+layout.*
+
 Print in landscape at 100%, double-sided, flipping on the short edge. Use the
 PDF made for your paper size so the three folding panels line up correctly.
 

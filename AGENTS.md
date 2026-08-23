@@ -51,6 +51,9 @@ After changing content or layout:
 3. Inspect all four page images under `build/render/` for clipping, collisions,
    inconsistent spacing, and legibility.
 
+After a visible card change, run `make preview`, inspect the tracked README
+image, and include its update in the same commit.
+
 Both final documents must remain exactly two landscape pages, one in US Letter
 and one in A4, with three panels per side, no TeX errors, and no overfull boxes.
 If content no longer fits, prefer concise wording or removal of low-value rows

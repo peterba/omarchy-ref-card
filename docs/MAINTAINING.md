@@ -52,6 +52,16 @@ make render
 
 Inspect both pages of both paper formats under `build/render/`.
 
+After a visible card change, regenerate the tracked README image with:
+
+```sh
+make preview
+```
+
+This target requires FFmpeg and composes both Letter pages into
+`docs/images/omarchy-reference-card-preview.png`. Inspect the result before
+committing it.
+
 ## Coding-agent support
 
 `AGENTS.md` defines the repository's editing boundaries and verification rules.

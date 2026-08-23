@@ -1,6 +1,7 @@
 TEX := tectonic
 PDFTOPPM ?= pdftoppm
 PDFINFO ?= pdfinfo
+FFMPEG ?= ffmpeg
 PYTHON ?= python3
 UPSTREAM_DIR ?=
 SOURCE := omarchy-reference-card.tex
@@ -16,11 +17,13 @@ CHECK_DIR := $(OUTPUT_DIR)/check
 LETTER_CHECK_LOG := $(CHECK_DIR)/omarchy-reference-card-letter.log
 A4_CHECK_LOG := $(CHECK_DIR)/omarchy-reference-card-a4.log
 RENDER_DIR := $(OUTPUT_DIR)/render
+PREVIEW_DIR := docs/images
+PREVIEW := $(PREVIEW_DIR)/omarchy-reference-card-preview.png
 SKILL_SOURCE := $(CURDIR)/codex-skill/omarchy-ref-card
 CODEX_SKILLS_DIR ?= $(HOME)/.codex/skills
 SKILL_TARGET := $(CODEX_SKILLS_DIR)/omarchy-ref-card
 
-.PHONY: all letter a4 personalize list-bindings check test check-upstream check-upstream-reconcile update-upstream-lock render install-skill clean
+.PHONY: all letter a4 personalize list-bindings check test check-upstream check-upstream-reconcile update-upstream-lock render preview install-skill clean
 
 all: $(PDFS)
 
@@ -73,6 +76,15 @@ render: $(PDFS)
 	$(PDFTOPPM) -png -r 150 $(LETTER_PDF) $(RENDER_DIR)/omarchy-reference-card-letter
 	$(PDFTOPPM) -png -r 150 $(A4_PDF) $(RENDER_DIR)/omarchy-reference-card-a4
 	@echo "Rendered pages are in $(RENDER_DIR)."
+
+preview: render
+	mkdir -p $(PREVIEW_DIR)
+	$(FFMPEG) -hide_banner -loglevel error -y \
+	  -i $(RENDER_DIR)/omarchy-reference-card-letter-1.png \
+	  -i $(RENDER_DIR)/omarchy-reference-card-letter-2.png \
+	  -filter_complex "[0:v]scale=692:-1[left];[1:v]scale=692:-1[right];[left][right]xstack=inputs=2:layout=0_0|708_0:fill=white,format=rgb24" \
+	  -frames:v 1 $(PREVIEW)
+	@echo "Updated README preview: $(PREVIEW)"
 
 install-skill:
 	mkdir -p "$(CODEX_SKILLS_DIR)"
