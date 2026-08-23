@@ -1,8 +1,8 @@
 # Agent instructions
 
 This repository builds a customizable, two-sided Omarchy reference card. Read
-the relevant sections of `README.md` before changing binding content or the
-customization API.
+`docs/CUSTOMIZING.md` before changing binding content or the customization API,
+and `docs/MAINTAINING.md` before changing the upstream audit.
 
 ## Choose the correct editing surface
 
@@ -16,7 +16,7 @@ customization API.
 - To change typography, geometry, rendering macros, or the customization API,
   edit `omarchy-card.sty`.
 - To change upstream classifications or the reviewed Omarchy revision, edit
-  files under `upstream/` through the audit workflow documented in `README.md`.
+  files under `upstream/` through the workflow in `docs/MAINTAINING.md`.
 - Never edit files under `build/`.
 
 Do not treat a personal preference as a new distributed default without an
@@ -25,7 +25,7 @@ the user separately asks for that change.
 
 ## Binding customization
 
-Use the public commands documented in `README.md`:
+Use the public commands documented in `docs/CUSTOMIZING.md`:
 
 - `\SetBinding` changes a key and description together.
 - `\SetBindingKey` or `\SetBindingDescription` changes one field.

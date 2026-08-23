@@ -4,8 +4,8 @@ Thank you for helping keep the Omarchy reference card accurate and printable.
 
 ## Before changing bindings
 
-The distributed card is a curated summary of the Omarchy 4 Quattro full-install
-defaults. Personal preferences belong in the ignored `personalize.tex`, not in
+The distributed card is a curated summary of Omarchy's full-install defaults.
+Personal preferences belong in the ignored `personalize.tex`, not in
 `defaults/bindings.tex`. Preserve stable binding IDs whenever possible and
 classify every new distributed ID exactly once in `upstream/bindings.toml`.
 
@@ -19,6 +19,9 @@ When upstream moves, first run `make check-upstream-reconcile` against the newer
 checkout. Review the binding changes, update the card and classifications, and
 only then run `make update-upstream-lock`. Include the reason for intentional
 summaries or omissions in the change description.
+
+The complete procedure is documented in
+[Maintaining the card](docs/MAINTAINING.md).
 
 ## Verify the card
 

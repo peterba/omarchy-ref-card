@@ -22,8 +22,9 @@ Do not commit `personalize.tex` or generated build artifacts.
 
 For distributed binding work, classify every id in `upstream/bindings.toml`
 and run `make check-upstream UPSTREAM_DIR=/path/to/omarchy` against the commit
-in `upstream/omarchy.lock`. Use the reconciliation target for a newer Quattro
-checkout, and update the lock only after reviewing every reported change.
+in `upstream/omarchy.lock`. Use the reconciliation target for a newer checkout
+of the locked upstream ref, and update the lock only after reviewing every
+reported change.
 
 After content or layout changes, run `make check` and `make render`, then inspect
 all four rendered page images. Preserve the two-page, six-panel layout in both

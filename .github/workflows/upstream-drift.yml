@@ -24,7 +24,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Check out latest Omarchy Quattro
+      - name: Check out latest configured Omarchy ref
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: basecamp/omarchy
@@ -65,7 +65,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         shell: bash
         run: |
-          title="Omarchy Quattro binding drift detected"
+          title="Omarchy binding drift detected"
           existing="$(gh issue list --repo "$REPOSITORY" --state open --search "$title in:title" --json number --jq '.[0].number // empty')"
           if [ -z "$existing" ]; then
             gh issue create \

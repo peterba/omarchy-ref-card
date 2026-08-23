@@ -1,5 +1,5 @@
 schema = 1
-profile = "Omarchy 4 Quattro full-install defaults"
+profile = "Omarchy full-install defaults"
 
 # Every distributed binding id must occur in exactly one category. The audit
 # intentionally reads defaults/bindings.tex, never the ignored personalize.tex.
@@ -84,4 +84,3 @@ manual_derived = [
 ]
 
 personal_placeholder = ["your-name", "your-email"]
-
