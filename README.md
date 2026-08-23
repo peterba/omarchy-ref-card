@@ -1,10 +1,15 @@
-# Omarchy Reference Card
+# Omarchy Keyboard Reference Card
 
 [Omarchy](https://omarchy.org/) has a lot of excellent shortcuts. Remembering
 all of them is another matter.
 
-This project puts the useful ones on a classic six-panel reference card you can
-print, fold, and keep beside your keyboard.
+This project puts the useful ones on a beautifully typeset, six-panel keyboard
+reference card you can print, fold, and keep beside your keyboard.
+
+Its retro look reaches past pixel art and gaming nostalgia to the technical
+reference cards of the late 1980s and early 1990s: dense, restrained,
+typographic, and made to live beside a keyboard. Built in LaTeX on top of Donald
+Knuth's TeX, it is designed first as a printed object—not merely a PDF.
 
 **Download the printable PDF:**
 
@@ -31,7 +36,7 @@ with something you can hold in your hands.
 - Six panels designed to fold into thirds
 - Curated defaults that are checked against Omarchy upstream
 - Personal overrides that stay separate from project updates
-- Plain TeX sources and reproducible builds
+- LaTeX sources and reproducible builds
 
 ## Make it yours
 
