@@ -1,0 +1,320 @@
+% Omarchy Reference Card -- TeX edition
+% Independently implemented in LaTeX. The physical six-panel format is
+% inspired by the classic GNU Emacs Reference Card.
+\documentclass[10pt]{article}
+\ifdefined\CardUseAfourPaper
+  \usepackage[a4paper]{omarchy-card}
+\else
+  \usepackage[letterpaper]{omarchy-card}
+\fi
+
+% Curated distributed defaults first; personal overrides second.
+\input{defaults/bindings.tex}
+\InputIfFileExists{personalize.tex}{}{}
+\ApplyCardFonts
+
+\begin{document}
+
+% SIDE ONE -- columns 1 through 3
+\noindent\panel{
+\cardtitle{\CardTitle}
+\cardsubtitle{\CardSubtitle}
+
+\sectionhead{Orientation}
+\PrintBinding{show-the-main-keyboard-bindings}
+\PrintBinding{show-tmux-bindings}
+\PrintBinding{show-herdr-bindings}
+\PrintBinding{omarchy-menu}
+\PrintBinding{applications-menu}
+\PrintBinding{system-menu}
+\PrintBinding{lock-computer}
+\PrintBinding{close-window}
+\PrintBinding{close-all-windows}
+
+\sectionhead{Window layout}
+\PrintBinding{toggle-tiling-or-floating}
+\PrintBinding{toggle-horizontal-or-vertical}
+\PrintBinding{make-window-sticky-and-floating}
+\PrintBinding{toggle-dwindle-or-scrolling-layout}
+\PrintBinding{toggle-pseudo-window-style}
+\PrintBinding{full-screen}
+\PrintBinding{full-width}
+\PrintBinding{full-screen-inside-window}
+\PrintBinding{expand-window-left}
+\PrintBinding{shrink-window-left}
+\PrintBinding{shrink-window-up}
+\PrintBinding{expand-window-down}
+\PrintBinding{resize-in-smaller-steps}
+\PrintBinding{resize-in-bigger-steps}
+\PrintBinding{save-window-width}
+\PrintBinding{restore-saved-width}
+\PrintBinding{drag-window}
+\PrintBinding{resize-window}
+
+\sectionhead{Workspaces}
+\PrintBinding{jump-to-workspace}
+\PrintBinding{next-workspace}
+\PrintBinding{previous-workspace}
+\PrintBinding{former-workspace}
+\PrintBinding{move-window-and-follow}
+\PrintBinding{move-window-without-following}
+\PrintBinding{move-workspace-to-monitor}
+}
+\sep
+\panel{
+\sectionhead{Focus and movement}
+\PrintBinding{focus-window-in-direction}
+\PrintBinding{swap-window-in-direction}
+\PrintBinding{scroll-through-workspaces}
+\PrintBinding{cycle-windows-on-workspace}
+\PrintBinding{cycle-backward}
+\PrintBinding{focus-next-monitor}
+\PrintBinding{focus-previous-monitor}
+
+\sectionhead{Window groups}
+\PrintBinding{toggle-window-grouping}
+\PrintBinding{move-window-out-of-group}
+\PrintBinding{cycle-windows-in-group}
+\PrintBinding{cycle-backward-in-group}
+\PrintBinding{jump-to-grouped-window}
+\PrintBinding{move-window-into-group}
+\PrintBinding{move-within-tiling-group}
+
+\sectionhead{Scratchpad, zoom, and scale}
+\PrintBinding{show-scratchpad-overlay}
+\PrintBinding{move-window-to-scratchpad}
+\PrintBinding{zoom-in-repeat-for-more}
+\PrintBinding{zoom-fully-out}
+\PrintBinding{next-monitor-scale}
+\PrintBinding{previous-monitor-scale}
+
+\sectionhead{System controls}
+\PrintBinding{audio-panel}
+\PrintBinding{bluetooth-panel}
+\PrintBinding{wi-fi-and-network-panel}
+\PrintBinding{display-panel}
+\PrintBinding{power-panel}
+\PrintBinding{calendar-panel}
+\PrintBinding{toggle-bar-panel-by-position}
+\PrintBinding{share-menu-localsend}
+\PrintBinding{activity-monitor-btop}
+\PrintBinding{capture-controls}
+\PrintBinding{toggle-menu}
+\PrintBinding{hardware-menu}
+\PrintBinding{calculator}
+\PrintBinding{emoji-picker}
+\PrintBinding{transcode-media}
+\PrintBinding{pick-an-ai-agent}
+
+\sectionhead{Adjustments}
+\PrintBinding{maximum-brightness}
+\PrintBinding{minimum-brightness}
+\PrintBinding{precise-1-percent-brightness}
+\PrintBinding{precise-1-percent-volume}
+\PrintBinding{keyboard-backlight-brighter-dimmer}
+\PrintBinding{cycle-keyboard-backlight-levels}
+\PrintBinding{next-track}
+\PrintBinding{previous-track}
+\note{Key notation: Sh abbreviates Shift.}
+}
+\sep
+\panel{
+\sectionhead{Launching applications}
+\PrintBinding{terminal}
+\PrintBinding{tmux-terminal}
+\PrintBinding{herdr}
+\PrintBinding{browser}
+\PrintBinding{private-browser}
+\PrintBinding{file-manager}
+\PrintBinding{file-manager-cwd}
+\PrintBinding{music}
+\PrintBinding{music-cli}
+\PrintBinding{password-manager}
+\PrintBinding{editor}
+\PrintBinding{calendar}
+\PrintBinding{email}
+\PrintBinding{new-email}
+\PrintBinding{ai-primary}
+\PrintBinding{ai-alternate}
+\PrintBinding{signal}
+\PrintBinding{photos}
+\PrintBinding{maps}
+\PrintBinding{whatsapp}
+\PrintBinding{google-messenger}
+\PrintBinding{docker}
+\PrintBinding{notes}
+\PrintBinding{writing}
+\PrintBinding{x}
+\PrintBinding{x-compose}
+\PrintBinding{youtube}
+\sectionhead{Universal clipboard}
+\PrintBinding{copy}
+\PrintBinding{cut-except-in-terminal}
+\PrintBinding{paste}
+\PrintBinding{clipboard-manager}
+
+\sectionhead{Capture}
+\PrintBinding{screenshot}
+\PrintBinding{screen-recording}
+\PrintBinding{color-picker}
+\PrintBinding{text-extraction-to-clipboard}
+\PrintBinding{make-webcam-overlay-smaller}
+\PrintBinding{make-webcam-overlay-larger}
+\PrintBinding{copy-current-chromium-webapp-url}
+\PrintBinding{download-current-page-video}
+\PrintBinding{start-or-stop-dictation}
+\PrintBinding{push-to-talk-dictation}
+\note{Screen recording first asks which audio to use. Press the hotkey again to stop.}
+}
+
+\newpage
+
+% SIDE TWO -- columns 4 through 6
+\noindent\panel{
+\cardtitle{\CardTitle}
+\cardsubtitle{Terminal and editor commands}
+
+\sectionhead{Tmux}
+\subhead{Prefix: Ctrl+Space (Ctrl+B also works)}
+\PrintStackedBindingPair{split pane}{tmux-split-beside}{tmux-split-below}
+\PrintBinding{kill-pane}
+\PrintBinding{toggle-pane-zoom}
+\PrintBinding{split-below-without-prefix}
+\PrintBinding{split-beside-without-prefix}
+\PrintBinding{kill-pane-without-prefix}
+\PrintBinding{move-between-panes}
+\PrintBinding{resize-panes}
+
+\subhead{Windows}
+\PrintStackedBindingPair{window}{tmux-window-new}{tmux-window-kill}
+\PrintBinding{rename-window}
+\PrintBinding{go-to-window}
+\PrintBinding{move-between-windows}
+\PrintBinding{move-window-left-or-right}
+
+\subhead{Sessions}
+\PrintStackedBindingPair{session}{tmux-session-new}{tmux-session-kill}
+\PrintBinding{rename-session}
+\PrintStackedBindingPair{session}{tmux-session-next}{tmux-session-previous}
+\PrintBinding{move-between-sessions}
+\PrintBinding{list-sessions}
+\PrintBinding{detach}
+
+\subhead{Copy mode and general}
+\PrintBinding{enter-copy-mode}
+\PrintStackedBindingPair{in copy mode}{tmux-copy-select}{tmux-copy-copy}
+\PrintBinding{reload-config}
+\PrintBinding{show-tmux-keybindings}
+\PrintBinding{command-prompt}
+
+\sectionhead{Tmux layout functions}
+\PrintBinding{dev-layout-editor-ai-terminal}
+\PrintBinding{dev-layout-per-subdirectory}
+\PrintBinding{multi-pane-swarm-layout}
+}
+\sep
+\panel{
+\sectionhead{Ghostty terminal}
+\PrintStackedBindingPair{new split}{ghostty-split-below}{ghostty-split-beside}
+\PrintBinding{move-between-splits}
+\PrintBinding{resize-split-by-10-lines}
+\PrintBinding{resize-split-by-100-lines}
+\PrintBinding{new-tab}
+\PrintBinding{move-between-tabs}
+\PrintBinding{go-to-tab}
+\PrintBinding{scroll-history}
+\PrintBinding{open-link-in-browser}
+
+\sectionhead{File manager}
+\PrintBinding{go-to-path}
+\PrintBinding{preview-arrows-navigate}
+\PrintBinding{go-back-one-folder}
+
+\sectionhead{Neovim (LazyVim)}
+\PrintBinding{show-command-options}
+\PrintBinding{fuzzy-file-search}
+\PrintBinding{toggle-sidebar}
+\PrintBinding{git-controls}
+\PrintBinding{search-file-content}
+\PrintBinding{switch-sidebar-editor-focus}
+\PrintBinding{resize-sidebar}
+\PrintStackedBindingPair{file tab}{neovim-file-tab-left}{neovim-file-tab-right}
+\PrintBinding{close-file-tab}
+
+\subhead{While in the sidebar}
+\PrintStackedBindingPair{add}{neovim-add-file}{neovim-add-directory}
+\PrintStackedBindingPair{}{neovim-delete}{neovim-move}
+\PrintBinding{rename}
+\PrintBinding{show-sidebar-help}
+
+\sectionhead{Notifications}
+\PrintBinding{dismiss-latest}
+\PrintBinding{dismiss-all}
+\PrintBinding{toggle-silencing}
+\PrintBinding{invoke-most-recent}
+\PrintBinding{open-notification-history}
+}
+\sep
+\panel{
+\sectionhead{Style}
+\PrintBinding{pick-a-new-theme}
+\PrintBinding{pick-theme-background}
+\PrintBinding{toggle-window-transparency}
+\PrintBinding{toggle-single-window-square-aspect}
+
+\sectionhead{Toggles}
+\PrintBinding{toggle-locking-on-idle}
+\PrintBinding{night-light-temperature}
+\PrintBinding{laptop-display-on-or-off}
+\PrintBinding{laptop-display-mirroring}
+\PrintBinding{top-bar}
+\PrintBinding{next-audio-output}
+\PrintBinding{next-media-source}
+\PrintBinding{window-gaps}
+
+\sectionhead{Reminders and notices}
+\PrintBinding{set-reminder}
+\PrintBinding{see-reminders}
+\PrintBinding{clear-reminders}
+\PrintBinding{show-time}
+\PrintBinding{show-battery}
+\PrintBinding{toggle-weather-notification}
+
+\sectionhead{Quick emoji compose}
+{\raggedright Type \CardCode{CapsLock}, then \CardCode{M}, then the final key:\par}
+\smallskip
+\PrintInlineBindingPair{emoji-smile}{emoji-cry}
+\PrintInlineBindingPair{emoji-love}{emoji-victory}
+\PrintInlineBindingPair{emoji-heart}{emoji-yes}
+\PrintInlineBindingPair{emoji-no}{emoji-middle-finger}
+\PrintInlineBindingPair{emoji-wish}{emoji-rock}
+\PrintInlineBindingPair{emoji-kiss}{emoji-eyeroll}
+\PrintBinding{wink}
+\PrintInlineBindingPair{emoji-pray}{emoji-drool}
+\PrintInlineBindingPair{emoji-money}{emoji-celebrate}
+\PrintInlineBindingPair{emoji-100}{emoji-toast}
+\PrintInlineBindingPair{emoji-ok}{emoji-greeting}
+\PrintInlineBindingPair{emoji-arm}{emoji-mind-blown}
+
+\sectionhead{Quick completions}
+\PrintBinding{em-dash}
+\PrintBinding{your-name}
+\PrintBinding{your-email}
+
+\PrintPersonalBindings
+
+\sectionhead{Customization}
+Window-manager bindings live in
+\CardCode{\char`\~/.config/hypr/bindings.lua}. Tmux bindings live in
+\CardCode{\char`\~/.config/tmux/tmux.conf}. Quick completions live in
+\CardCode{\char`\~/.XCompose}.
+
+\vfill
+\hrule height 0.35pt\vspace{3pt}
+{\fontsize{6.2}{7}\selectfont
+Compiled from \textit{The \CardEdition\ Manual: Hotkeys}, \CardSourceDate.
+Physical format inspired by the GNU Emacs Reference Card designed by Stephen Gildea.
+App bindings reflect Omarchy defaults and may differ after customization.\par}
+}
+
+\end{document}

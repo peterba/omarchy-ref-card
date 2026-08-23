@@ -1,0 +1,210 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{omarchy-card}[2026/08/23 Customizable Omarchy reference card]
+
+\newif\iforb@afourpaper
+\orb@afourpaperfalse
+\DeclareOption{letterpaper}{\orb@afourpaperfalse}
+\DeclareOption{a4paper}{\orb@afourpapertrue}
+\ExecuteOptions{letterpaper}
+\ProcessOptions\relax
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\iforb@afourpaper
+  \RequirePackage[a4paper,landscape,margin=0.27in]{geometry}
+\else
+  \RequirePackage[letterpaper,landscape,margin=0.27in]{geometry}
+\fi
+\RequirePackage{microtype}
+\RequirePackage{ragged2e}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1em}
+
+% User-facing card settings. personalize.tex may replace these.
+\newcommand{\CardTitle}{OMARCHY}
+\newcommand{\CardEdition}{Omarchy 4 Quattro}
+\newcommand{\CardSubtitle}{Reference Card for \CardEdition}
+\newcommand{\CardSourceDate}{22 August 2026}
+\newcommand{\CardMainFont}{Latin Modern Roman}
+\newcommand{\CardMonoFont}{Latin Modern Mono}
+\newif\ifCardCustomFonts
+\CardCustomFontsfalse
+\newcommand{\SetCardTitle}[1]{\renewcommand{\CardTitle}{#1}}
+\newcommand{\SetCardEdition}[1]{\renewcommand{\CardEdition}{#1}}
+\newcommand{\SetCardSubtitle}[1]{\renewcommand{\CardSubtitle}{#1}}
+\newcommand{\SetCardSourceDate}[1]{\renewcommand{\CardSourceDate}{#1}}
+\newcommand{\SetCardFonts}[2]{%
+  \renewcommand{\CardMainFont}{#1}%
+  \renewcommand{\CardMonoFont}{#2}%
+  \CardCustomFontstrue}
+\newcommand{\ApplyCardFonts}{%
+  \ifCardCustomFonts
+    \RequirePackage{fontspec}%
+    \setmainfont{\CardMainFont}%
+    \setmonofont{\CardMonoFont}%
+  \fi}
+
+% Binding registry. Defaults declare ids first; personalize.tex may then
+% change existing ids or add new personal rows. Strict id checks keep typos
+% from compiling into a card that silently ignores the intended change.
+\ExplSyntaxOn
+\tl_new:N \l__omarchy_key_tl
+\cs_new_protected:Npn \omarchy_store_key:nn #1#2
+  {
+    \tl_set:Nn \l__omarchy_key_tl {#2}
+    \tl_replace_all:Nnn \l__omarchy_key_tl { + }
+      { +\discretionary{}{}{} }
+    \tl_replace_all:Nnn \l__omarchy_key_tl { / }
+      { /\discretionary{}{}{} }
+    \cs_gset:cpx { orb@#1@key }
+      { \exp_not:V \l__omarchy_key_tl }
+  }
+\cs_new_eq:NN \orbStoreKey \omarchy_store_key:nn
+\ExplSyntaxOff
+\makeatletter
+\newcommand{\orb@StoreBinding}[3]{%
+  \orbStoreKey{#1}{#2}%
+  \expandafter\def\csname orb@#1@description\endcsname{#3}%
+  \expandafter\def\csname orb@#1@enabled\endcsname{1}}
+\newcommand{\DeclareBinding}[3]{%
+  \ifcsname orb@#1@key\endcsname
+    \PackageError{omarchy-card}{Binding `#1' is already declared}%
+      {Use \string\SetBinding\space to replace an existing binding.}%
+  \else
+    \orb@StoreBinding{#1}{#2}{#3}%
+  \fi}
+\newcommand{\SetBinding}[3]{%
+  \ifcsname orb@#1@key\endcsname
+    \orb@StoreBinding{#1}{#2}{#3}%
+  \else
+    \PackageError{omarchy-card}{Cannot set unknown binding `#1'}%
+      {Check the id in defaults/bindings.tex, or use
+       \string\AddPersonalBinding\space for a new row.}%
+  \fi}
+\newcommand{\SetBindingKey}[2]{%
+  \ifcsname orb@#1@key\endcsname
+    \orbStoreKey{#1}{#2}%
+  \else
+    \PackageError{omarchy-card}{Cannot set key for unknown binding `#1'}%
+      {Check the id in defaults/bindings.tex.}%
+  \fi}
+\newcommand{\SetBindingDescription}[2]{%
+  \ifcsname orb@#1@key\endcsname
+    \expandafter\def\csname orb@#1@description\endcsname{#2}%
+  \else
+    \PackageError{omarchy-card}%
+      {Cannot set description for unknown binding `#1'}%
+      {Check the id in defaults/bindings.tex.}%
+  \fi}
+\newcommand{\RemoveBinding}[1]{%
+  \ifcsname orb@#1@key\endcsname
+    \expandafter\def\csname orb@#1@enabled\endcsname{0}%
+  \else
+    \PackageError{omarchy-card}{Cannot remove unknown binding `#1'}%
+      {Check the id in defaults/bindings.tex.}%
+  \fi}
+\newcommand{\EnableBinding}[1]{%
+  \ifcsname orb@#1@key\endcsname
+    \expandafter\def\csname orb@#1@enabled\endcsname{1}%
+  \else
+    \PackageError{omarchy-card}{Cannot enable unknown binding `#1'}%
+      {Check the id in defaults/bindings.tex.}%
+  \fi}
+\newcommand{\PrintBinding}[1]{%
+  \ifcsname orb@#1@key\endcsname
+    \ifnum\csname orb@#1@enabled\endcsname=1
+      \orb@BindingRow{\csname orb@#1@description\endcsname}%
+                     {\csname orb@#1@key\endcsname}%
+    \fi
+  \else
+    \PackageError{omarchy-card}{Layout references unknown binding `#1'}%
+      {Declare the binding before printing it.}%
+  \fi}
+\newcommand{\orb@IfBindingEnabled}[3]{%
+  \ifcsname orb@#1@key\endcsname
+    \ifnum\csname orb@#1@enabled\endcsname=1 #2\else #3\fi
+  \else
+    \PackageError{omarchy-card}{Layout references unknown binding `#1'}%
+      {Declare the binding before printing it.}%
+  \fi}
+\newcommand{\orb@BindingKey}[1]{\csname orb@#1@key\endcsname}
+\newcommand{\orb@BindingDescription}[1]{%
+  \csname orb@#1@description\endcsname}
+\newcommand{\PrintStackedBindingPair}[3]{%
+  \orb@IfBindingEnabled{#2}{%
+    \orb@IfBindingEnabled{#3}{%
+      \orb@PairedBindingRow{#1}{\orb@BindingDescription{#2}}%
+                                {\orb@BindingDescription{#3}}%
+      \orb@PairedBindingRow{}{\orb@BindingKey{#2}}{\orb@BindingKey{#3}}%
+    }{\orb@BindingRow{#1 -- \orb@BindingDescription{#2}}{\orb@BindingKey{#2}}}%
+  }{%
+    \orb@IfBindingEnabled{#3}{%
+      \orb@BindingRow{#1 -- \orb@BindingDescription{#3}}{\orb@BindingKey{#3}}}{}%
+  }}
+\newcommand{\PrintInlineBindingPair}[2]{%
+  \orb@IfBindingEnabled{#1}{%
+    \orb@IfBindingEnabled{#2}{%
+      \orb@PairedBindingRow{\orb@BindingDescription{#1} / \orb@BindingDescription{#2}}%
+                           {\orb@BindingKey{#1}}{\orb@BindingKey{#2}}%
+    }{\orb@BindingRow{\orb@BindingDescription{#1}}{\orb@BindingKey{#1}}}%
+  }{%
+    \orb@IfBindingEnabled{#2}{%
+      \orb@BindingRow{\orb@BindingDescription{#2}}{\orb@BindingKey{#2}}}{}%
+  }}
+
+\newcommand{\PersonalBindings}{}
+\newif\ifPersonalBindingsAdded
+\PersonalBindingsAddedfalse
+\newcommand{\AddPersonalBinding}[3]{%
+  \ifcsname orb@#1@key\endcsname
+    \PackageError{omarchy-card}{Binding `#1' is already declared}%
+      {Choose a new id for the personal row, or use
+       \string\SetBinding\space to replace the existing binding.}%
+  \else
+    \DeclareBinding{#1}{#2}{#3}%
+    \PersonalBindingsAddedtrue
+    \g@addto@macro\PersonalBindings{\PrintBinding{#1}}%
+  \fi}
+\newcommand{\PrintPersonalBindings}{%
+  \ifPersonalBindingsAdded
+    \sectionhead{Personal bindings}%
+    \PersonalBindings
+  \fi}
+% Independent LaTeX implementation of a six-panel reference-card layout.
+\newlength{\panelwidth}
+\setlength{\panelwidth}{0.315\textwidth}
+\newcommand{\cardtitle}[1]{%
+  {\centering\fontsize{20}{21}\selectfont\bfseries #1\par}%
+  \vspace{2pt}\hrule height 0.65pt\vspace{3pt}}
+\newcommand{\cardsubtitle}[1]{%
+  {\centering\fontsize{8}{9}\selectfont\itshape #1\par}\vspace{4pt}}
+\newcommand{\sectionhead}[1]{%
+  \par\goodbreak\vspace{4.2pt}%
+  {\fontsize{10.5}{11}\selectfont\bfseries #1\par}%
+  \nobreak\vspace{1.4pt}}
+\newcommand{\subhead}[1]{%
+  \par\goodbreak\vspace{2.8pt}%
+  {\fontsize{8}{9}\selectfont\bfseries\itshape #1\par}%
+  \nobreak\vspace{0.7pt}}
+\newcommand{\CardCode}[1]{{\ttfamily #1}}
+\newcommand{\orb@BindingRow}[2]{%
+  \noindent
+  \parbox[t]{0.61\linewidth}{\raggedright #1\strut}\hfill
+  \parbox[t]{0.36\linewidth}{\raggedleft
+    \fontsize{6.9}{8}\selectfont\ttfamily #2\strut}\par}
+\newcommand{\orb@PairedBindingRow}[3]{%
+  \noindent
+  \parbox[t]{0.51\linewidth}{\raggedright #1\strut}\hfill
+  \parbox[t]{0.225\linewidth}{\raggedleft\ttfamily #2\strut}\hfill
+  \parbox[t]{0.225\linewidth}{\raggedleft\ttfamily #3\strut}\par}
+\makeatother
+\newcommand{\note}[1]{%
+  \par\vspace{2pt}{\fontsize{6.7}{7.4}\selectfont\itshape #1\par}}
+\newcommand{\panel}[1]{%
+  \begin{minipage}[t][0.945\textheight][t]{\panelwidth}
+  \vspace{0pt}\RaggedRight\fontsize{7.65}{8.45}\selectfont #1
+  \end{minipage}}
+\newcommand{\sep}{\hfill}

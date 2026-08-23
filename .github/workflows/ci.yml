@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out reference card
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Check out pinned Omarchy
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: basecamp/omarchy
+          ref: ef6d9e6605b121df15bf310e630e04f0c1119fc8
+          path: upstream-checkout
+          persist-credentials: false
+
+      - name: Install Tectonic
+        uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f # v4.0.5
+        with:
+          tectonic-version: 0.17.0
+
+      - name: Install PDF inspection tools
+        run: sudo apt-get update && sudo apt-get install --yes poppler-utils
+
+      - name: Test upstream audit
+        run: make check-upstream UPSTREAM_DIR=upstream-checkout
+
+      - name: Build and verify Letter and A4 cards
+        run: make check
+
+      - name: Upload printable PDFs
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: printable-reference-cards
+          path: |
+            build/omarchy-reference-card-letter.pdf
+            build/omarchy-reference-card-a4.pdf
+          if-no-files-found: error
+

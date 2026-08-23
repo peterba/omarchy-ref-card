@@ -1,0 +1,87 @@
+schema = 1
+profile = "Omarchy 4 Quattro full-install defaults"
+
+# Every distributed binding id must occur in exactly one category. The audit
+# intentionally reads defaults/bindings.tex, never the ignored personalize.tex.
+[classifications]
+upstream_hyprland = [
+  "show-the-main-keyboard-bindings", "show-tmux-bindings", "show-herdr-bindings",
+  "omarchy-menu", "applications-menu", "system-menu", "lock-computer",
+  "close-window", "close-all-windows", "toggle-tiling-or-floating",
+  "toggle-horizontal-or-vertical", "make-window-sticky-and-floating",
+  "toggle-dwindle-or-scrolling-layout", "toggle-pseudo-window-style",
+  "full-screen", "full-width", "full-screen-inside-window",
+  "expand-window-left", "shrink-window-left", "shrink-window-up",
+  "expand-window-down", "resize-in-smaller-steps", "resize-in-bigger-steps",
+  "save-window-width", "restore-saved-width", "drag-window", "resize-window",
+  "jump-to-workspace", "next-workspace", "previous-workspace", "former-workspace",
+  "move-window-and-follow", "move-window-without-following",
+  "move-workspace-to-monitor", "focus-window-in-direction",
+  "swap-window-in-direction", "scroll-through-workspaces",
+  "cycle-windows-on-workspace", "cycle-backward", "focus-next-monitor",
+  "focus-previous-monitor", "toggle-window-grouping", "move-window-out-of-group",
+  "cycle-windows-in-group", "cycle-backward-in-group", "jump-to-grouped-window",
+  "move-window-into-group", "move-within-tiling-group",
+  "show-scratchpad-overlay", "move-window-to-scratchpad",
+  "zoom-in-repeat-for-more", "zoom-fully-out", "next-monitor-scale",
+  "previous-monitor-scale", "audio-panel", "bluetooth-panel",
+  "wi-fi-and-network-panel", "display-panel", "power-panel", "calendar-panel",
+  "toggle-bar-panel-by-position", "share-menu-localsend", "activity-monitor-btop",
+  "capture-controls", "toggle-menu", "hardware-menu", "calculator", "emoji-picker",
+  "transcode-media", "pick-an-ai-agent", "maximum-brightness",
+  "minimum-brightness", "precise-1-percent-brightness", "precise-1-percent-volume",
+  "keyboard-backlight-brighter-dimmer", "cycle-keyboard-backlight-levels",
+  "next-track", "previous-track", "copy", "cut-except-in-terminal", "paste",
+  "clipboard-manager", "screenshot", "screen-recording", "color-picker",
+  "text-extraction-to-clipboard", "make-webcam-overlay-smaller",
+  "make-webcam-overlay-larger", "start-or-stop-dictation", "push-to-talk-dictation",
+  "dismiss-latest", "dismiss-all", "toggle-silencing", "invoke-most-recent",
+  "open-notification-history", "pick-a-new-theme", "pick-theme-background",
+  "toggle-window-transparency", "toggle-single-window-square-aspect",
+  "toggle-locking-on-idle", "night-light-temperature", "laptop-display-on-or-off",
+  "laptop-display-mirroring", "top-bar", "next-audio-output", "next-media-source",
+  "window-gaps", "set-reminder", "see-reminders", "clear-reminders", "show-time",
+  "show-battery", "toggle-weather-notification", "terminal", "tmux-terminal", "herdr",
+  "browser", "private-browser", "file-manager", "file-manager-cwd", "music",
+  "music-cli", "password-manager", "editor", "calendar", "email", "new-email",
+  "ai-primary", "ai-alternate", "signal", "photos", "maps", "whatsapp",
+  "google-messenger", "docker", "notes", "writing", "x", "x-compose", "youtube",
+]
+
+upstream_config = [
+  "copy-current-chromium-webapp-url", "download-current-page-video",
+  "tmux-split-beside", "tmux-split-below", "kill-pane", "toggle-pane-zoom",
+  "split-below-without-prefix", "split-beside-without-prefix",
+  "kill-pane-without-prefix", "move-between-panes", "resize-panes",
+  "tmux-window-new", "tmux-window-kill", "rename-window", "go-to-window",
+  "move-between-windows", "move-window-left-or-right", "tmux-session-new",
+  "tmux-session-kill", "rename-session", "tmux-session-next",
+  "tmux-session-previous", "move-between-sessions", "list-sessions", "detach",
+  "enter-copy-mode", "tmux-copy-select", "tmux-copy-copy", "reload-config",
+  "show-tmux-keybindings", "command-prompt", "emoji-smile", "emoji-cry",
+  "emoji-love", "emoji-victory", "emoji-heart", "emoji-yes", "emoji-no",
+  "emoji-middle-finger", "emoji-wish", "emoji-rock", "emoji-kiss",
+  "emoji-eyeroll", "wink", "emoji-pray", "emoji-drool", "emoji-money",
+  "emoji-celebrate", "emoji-100", "emoji-toast", "emoji-ok", "emoji-greeting",
+  "emoji-arm", "emoji-mind-blown", "em-dash",
+]
+
+external_default = [
+  "ghostty-split-below", "ghostty-split-beside", "move-between-splits",
+  "resize-split-by-10-lines", "resize-split-by-100-lines", "new-tab",
+  "move-between-tabs", "go-to-tab", "scroll-history", "open-link-in-browser",
+  "go-to-path", "preview-arrows-navigate", "go-back-one-folder",
+  "show-command-options", "fuzzy-file-search", "toggle-sidebar", "git-controls",
+  "search-file-content", "switch-sidebar-editor-focus", "resize-sidebar",
+  "neovim-file-tab-left", "neovim-file-tab-right", "close-file-tab",
+  "neovim-add-file", "neovim-add-directory", "neovim-delete", "neovim-move",
+  "rename", "show-sidebar-help",
+]
+
+manual_derived = [
+  "dev-layout-editor-ai-terminal", "dev-layout-per-subdirectory",
+  "multi-pane-swarm-layout",
+]
+
+personal_placeholder = ["your-name", "your-email"]
+

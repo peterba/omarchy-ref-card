@@ -1,0 +1,4 @@
+interface:
+  display_name: "Omarchy Reference Card"
+  short_description: "Maintain and verify the Omarchy reference card"
+  default_prompt: "Update my Omarchy reference card and verify the two-sided PDF."

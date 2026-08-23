@@ -1,0 +1,5 @@
+schema = 1
+repository = "https://github.com/basecamp/omarchy.git"
+ref = "quattro"
+commit = "ef6d9e6605b121df15bf310e630e04f0c1119fc8"
+binding_digest = "63940adb5e440dc97eafe4b7e169cd55f00a004e0fcc3ca1636eaf34fc2aa49c"
