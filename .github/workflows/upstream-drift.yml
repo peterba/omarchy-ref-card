@@ -20,12 +20,12 @@ jobs:
       drift: ${{ steps.audit.outputs.drift }}
     steps:
       - name: Check out reference card
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Check out latest Omarchy Quattro
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: basecamp/omarchy
           ref: quattro
@@ -73,4 +73,3 @@ jobs:
               --title "$title" \
               --body "The scheduled canonical-binding audit differs from upstream/omarchy.lock. Review the audit log at $RUN_URL, reconcile the card, and update the lock only after review."
           fi
-
