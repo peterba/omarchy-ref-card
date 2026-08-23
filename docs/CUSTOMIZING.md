@@ -79,6 +79,13 @@ Titles and source information can also be personalized:
 \SetCardSourceDate{23 August 2026}
 ```
 
+`\SetCardTitle` replaces the default Omarchy wordmark with the supplied text
+on both sides. Restore the official wordmark with:
+
+```tex
+\UseOfficialOmarchyWordmark
+```
+
 Descriptions and keys are TeX text. Escape special characters when they should
 print literally; for example, write `\%`, `\_`, `\&`, and `\#`.
 

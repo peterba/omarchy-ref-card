@@ -17,6 +17,7 @@
 \fi
 \RequirePackage{microtype}
 \RequirePackage{ragged2e}
+\RequirePackage{graphicx}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
@@ -30,9 +31,14 @@
 \newcommand{\CardSourceDate}{23 August 2026}
 \newcommand{\CardMainFont}{Latin Modern Roman}
 \newcommand{\CardMonoFont}{Latin Modern Mono}
+\newif\ifCardUseOfficialWordmark
 \newif\ifCardCustomFonts
+\CardUseOfficialWordmarktrue
 \CardCustomFontsfalse
-\newcommand{\SetCardTitle}[1]{\renewcommand{\CardTitle}{#1}}
+\newcommand{\SetCardTitle}[1]{%
+  \renewcommand{\CardTitle}{#1}%
+  \CardUseOfficialWordmarkfalse}
+\newcommand{\UseOfficialOmarchyWordmark}{\CardUseOfficialWordmarktrue}
 \newcommand{\SetCardEdition}[1]{\renewcommand{\CardEdition}{#1}}
 \newcommand{\SetCardSubtitle}[1]{\renewcommand{\CardSubtitle}{#1}}
 \newcommand{\SetCardSourceDate}[1]{\renewcommand{\CardSourceDate}{#1}}
@@ -45,6 +51,12 @@
     \RequirePackage{fontspec}%
     \setmainfont{\CardMainFont}%
     \setmonofont{\CardMonoFont}%
+  \fi}
+\newcommand{\PrintCardTitle}{%
+  \ifCardUseOfficialWordmark
+    \cardlogo{assets/omarchy-wordmark.png}%
+  \else
+    \cardtitle{\CardTitle}%
   \fi}
 
 % Binding registry. Defaults declare ids first; personalize.tex may then
@@ -178,9 +190,13 @@
 \setlength{\panelwidth}{0.315\textwidth}
 \newcommand{\cardtitle}[1]{%
   {\centering\fontsize{20}{21}\selectfont\bfseries #1\par}%
-  \vspace{2pt}\hrule height 0.65pt\vspace{3pt}}
+  \vspace{2pt}}
+\newcommand{\cardlogo}[1]{%
+  {\centering\includegraphics[width=0.50\linewidth]{#1}\par}%
+  \vspace{2pt}}
 \newcommand{\cardsubtitle}[1]{%
-  {\centering\fontsize{8}{9}\selectfont\itshape #1\par}\vspace{4pt}}
+  {\centering\fontsize{8}{9}\selectfont\itshape #1\par}%
+  \vspace{2pt}\hrule height 0.65pt\vspace{4pt}}
 \newcommand{\sectionhead}[1]{%
   \par\goodbreak\vspace{4.2pt}%
   {\fontsize{10.5}{11}\selectfont\bfseries #1\par}%

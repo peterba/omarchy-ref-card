@@ -3,8 +3,9 @@
 [Omarchy](https://omarchy.org/) has a lot of excellent shortcuts. Remembering
 all of them is another matter.
 
-This project puts the useful ones on a beautifully typeset, six-panel keyboard
-reference card you can print, fold, and keep beside your keyboard.
+This unofficial community project puts the useful ones on a beautifully
+typeset, six-panel keyboard reference card you can print, fold, and keep beside
+your keyboard.
 
 Its retro look reaches past pixel art and gaming nostalgia to the technical
 reference cards of the late 1980s and early 1990s: dense, restrained,

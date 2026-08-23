@@ -2,8 +2,9 @@
 
 ## Omarchy
 
-The distributed binding data and some concise descriptions are derived from
-the [Omarchy project](https://github.com/basecamp/omarchy).
+The distributed binding data, some concise descriptions, and the wordmark in
+`assets/omarchy-wordmark.png` are derived from the
+[Omarchy project](https://github.com/basecamp/omarchy).
 
 Copyright (c) David Heinemeier Hansson
 
