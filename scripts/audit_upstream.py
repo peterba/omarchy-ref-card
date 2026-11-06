@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BINDING_RE = re.compile(r"^\\DeclareBinding\{([^}]+)\}\{([^}]*)\}\{([^}]*)\}$")
-CALL_RE = re.compile(r"o\.(bind(?:_toggle)?)\s*\(")
+CALL_RE = re.compile(r"o\.(bind(?:_toggle|_hold)?)\s*\(")
 
 
 def split_lua_args(text: str) -> list[str]:
@@ -109,7 +109,18 @@ def extract_config_records(upstream: Path) -> list[tuple[str, str]]:
         ("xcompose", upstream / "default/xcompose", re.compile(r"^<")),
         ("menu", upstream / "bin/omarchy-menu-keybindings", re.compile(r"^\s*echo \".*(?:Web App|keybindings)")),
     ]
+    # Only the seed config's [keys] table defines Omarchy overrides.
+    herdr = upstream / "config/herdr/config.toml"
+    if not herdr.is_file():
+        raise ValueError(f"missing canonical Omarchy config: {herdr}")
     records = []
+    in_keys = False
+    for line in herdr.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if stripped.startswith("["):
+            in_keys = stripped == "[keys]"
+        elif in_keys and stripped and not stripped.startswith("#"):
+            records.append(("herdr", re.sub(r"\s+", " ", stripped)))
     for label, path, pattern in specs:
         if not path.is_file():
             raise ValueError(f"missing canonical Omarchy config: {path}")
@@ -153,6 +164,8 @@ def normalize_chord(chord: str) -> str:
 
 def expand_card_key(value: str) -> set[str]:
     value = value.replace("\\%", "%")
+    if value == "RightAlt":
+        return {normalize_chord("ALT + Alt_R")}
     mods, token = value.rsplit("+", 1) if "+" in value else ("", value)
     prefix = f"{mods}+" if mods else ""
     alternatives: list[str]

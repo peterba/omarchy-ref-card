@@ -17,7 +17,7 @@
 \DeclareBinding{toggle-tiling-or-floating}{Super+T}{toggle tiling or floating}
 \DeclareBinding{toggle-horizontal-or-vertical}{Super+J}{toggle horizontal or vertical}
 \DeclareBinding{make-window-sticky-and-floating}{Super+O}{make window sticky and floating}
-\DeclareBinding{toggle-dwindle-or-scrolling-layout}{Super+L}{toggle dwindle or scrolling layout}
+\DeclareBinding{toggle-dwindle-or-scrolling-layout}{Super+L}{cycle dwindle/scrolling/floating}
 \DeclareBinding{toggle-pseudo-window-style}{Super+P}{toggle pseudo window style}
 \DeclareBinding{full-screen}{Super+F}{full screen}
 \DeclareBinding{full-width}{Super+Alt+F}{full width}
@@ -71,17 +71,17 @@
 % System controls
 \DeclareBinding{audio-panel}{Super+Ctrl+A}{audio panel}
 \DeclareBinding{bluetooth-panel}{Super+Ctrl+B}{Bluetooth panel}
-\DeclareBinding{wi-fi-and-network-panel}{Super+Ctrl+W}{Wi-Fi and network panel}
+\DeclareBinding{wi-fi-and-network-panel}{Super+Ctrl+N}{Wi-Fi and network panel}
 \DeclareBinding{display-panel}{Super+Ctrl+D}{display panel}
 \DeclareBinding{power-panel}{Super+Ctrl+P}{power panel}
 \DeclareBinding{calendar-panel}{Super+Ctrl+Alt+D}{calendar panel}
 \DeclareBinding{toggle-bar-panel-by-position}{Super+Ctrl+1--9}{toggle bar panel by position}
 \DeclareBinding{share-menu-localsend}{Super+Ctrl+S}{share menu (LocalSend)}
-\DeclareBinding{activity-monitor-btop}{Super+Ctrl+T}{activity monitor (btop)}
+\DeclareBinding{activity-monitor-btop}{Super+Shift+T}{activity monitor (btop)}
 \DeclareBinding{capture-controls}{Super+Ctrl+C}{capture controls}
 \DeclareBinding{toggle-menu}{Super+Ctrl+O}{toggle menu}
 \DeclareBinding{hardware-menu}{Super+Ctrl+H}{hardware menu}
-\DeclareBinding{calculator}{Super+Ctrl+Q}{calculator}
+\DeclareBinding{calculator}{Super+Shift+Q}{calculator}
 \DeclareBinding{emoji-picker}{Super+Ctrl+E}{emoji picker}
 \DeclareBinding{transcode-media}{Super+Ctrl+.}{transcode media}
 \DeclareBinding{pick-an-ai-agent}{Super+Sh+Ctrl+A}{pick an AI agent}
@@ -111,54 +111,42 @@
 \DeclareBinding{make-webcam-overlay-larger}{Super+Alt+]}{make webcam overlay larger}
 \DeclareBinding{copy-current-chromium-webapp-url}{Alt+Shift+L}{copy current Chromium/webapp URL}
 \DeclareBinding{download-current-page-video}{Alt+Shift+D}{download current page video}
-\DeclareBinding{start-or-stop-dictation}{Super+Ctrl+X}{start or stop dictation}
-\DeclareBinding{push-to-talk-dictation}{F9}{push-to-talk dictation}
+\DeclareBinding{start-or-stop-dictation}{Alt+Space}{start or stop dictation}
+\DeclareBinding{push-to-talk-dictation}{RightAlt}{hold to dictate}
 
-% Tmux
-\DeclareBinding{tmux-split-beside}{Prefix+v}{beside}
-\DeclareBinding{tmux-split-below}{Prefix+h}{below}
-\DeclareBinding{kill-pane}{Prefix+x}{kill pane}
+% Herdr (Omarchy seed configuration)
+\DeclareBinding{herdr-split-beside}{Prefix+v}{beside}
+\DeclareBinding{herdr-split-below}{Prefix+h}{below}
+\DeclareBinding{kill-pane}{Prefix+x}{close pane}
 \DeclareBinding{toggle-pane-zoom}{Prefix+z}{toggle pane zoom}
 \DeclareBinding{split-below-without-prefix}{Alt+Enter}{split below without prefix}
 \DeclareBinding{split-beside-without-prefix}{Alt+Shift+Enter}{split beside without prefix}
-\DeclareBinding{kill-pane-without-prefix}{Alt+Escape}{kill pane without prefix}
+\DeclareBinding{kill-pane-without-prefix}{Alt+Escape}{close pane without prefix}
 \DeclareBinding{move-between-panes}{Ctrl+Alt+Arrow}{move between panes}
 \DeclareBinding{resize-panes}{Ctrl+Alt+Sh+Arrow}{resize panes}
-\DeclareBinding{tmux-window-new}{Prefix+c}{new}
-\DeclareBinding{tmux-window-kill}{Prefix+k}{kill}
-\DeclareBinding{rename-window}{Prefix+r}{rename window}
-\DeclareBinding{go-to-window}{Alt+1--9}{go to window}
-\DeclareBinding{move-between-windows}{Alt+Left/Right}{move between windows}
-\DeclareBinding{move-window-left-or-right}{Alt+Sh+Left/Right}{move window left or right}
-\DeclareBinding{tmux-session-new}{Prefix+C}{new}
-\DeclareBinding{tmux-session-kill}{Prefix+K}{kill}
-\DeclareBinding{rename-session}{Prefix+R}{rename session}
-\DeclareBinding{tmux-session-next}{Prefix+N}{next}
-\DeclareBinding{tmux-session-previous}{Prefix+P}{previous}
-\DeclareBinding{move-between-sessions}{Alt+Up/Down}{move between sessions}
-\DeclareBinding{list-sessions}{Prefix+s}{list sessions}
+\DeclareBinding{herdr-tab-new}{Prefix+c}{new}
+\DeclareBinding{herdr-tab-close}{Prefix+k}{close}
+\DeclareBinding{herdr-tab-rename}{Prefix+r}{rename tab}
+\DeclareBinding{herdr-tab-jump}{Alt+1--9}{go to tab}
+\DeclareBinding{herdr-tab-cycle}{Alt+Left/Right}{move between tabs}
+\DeclareBinding{herdr-tab-move}{Alt+Sh+Left/Right}{move tab left or right}
+\DeclareBinding{herdr-workspace-new}{Prefix+Sh+C}{new}
+\DeclareBinding{herdr-workspace-close}{Prefix+Sh+K}{close}
+\DeclareBinding{herdr-workspace-rename}{Prefix+Sh+R}{rename workspace}
+\DeclareBinding{herdr-workspace-cycle}{Alt+Up/Down}{move between workspaces}
 \DeclareBinding{detach}{Prefix+d}{detach}
 \DeclareBinding{enter-copy-mode}{Prefix+[}{enter copy mode}
-\DeclareBinding{tmux-copy-select}{v}{select}
-\DeclareBinding{tmux-copy-copy}{y}{copy}
 \DeclareBinding{reload-config}{Prefix+q}{reload config}
-\DeclareBinding{show-tmux-keybindings}{Prefix+?}{show Tmux keybindings}
-\DeclareBinding{command-prompt}{Prefix+:}{command prompt}
-
-% Tmux layout functions
-\DeclareBinding{dev-layout-editor-ai-terminal}{tdl <ai> [ai2]}{dev layout: editor, AI, terminal}
-\DeclareBinding{dev-layout-per-subdirectory}{tdlm <ai> [ai2]}{dev layout per subdirectory}
-\DeclareBinding{multi-pane-swarm-layout}{tsl <n> <cmd>}{multi-pane swarm layout}
+\DeclareBinding{herdr-help}{Prefix+?}{show Herdr keybindings}
+\DeclareBinding{herdr-workspace-picker}{Prefix+w}{pick workspace}
+\DeclareBinding{herdr-sidebar}{Prefix+b}{toggle agent sidebar}
+\DeclareBinding{herdr-notification}{Prefix+o}{open notification target}
+\DeclareBinding{herdr-worktree}{Prefix+Sh+G}{new Git worktree}
+\DeclareBinding{dev-layout-editor-ai-terminal}{hdl <ai> [ai2]}{dev layout: editor, AI, terminal}
+\DeclareBinding{dev-layout-per-subdirectory}{hdlm <ai> [ai2]}{dev layout per subdirectory}
+\DeclareBinding{multi-pane-swarm-layout}{hsl <n> <cmd>}{multi-pane swarm layout}
 
 % Ghostty terminal
-\DeclareBinding{ghostty-split-below}{Ctrl+Shift+E}{below}
-\DeclareBinding{ghostty-split-beside}{Ctrl+Shift+O}{beside}
-\DeclareBinding{move-between-splits}{Ctrl+Alt+Arrow}{move between splits}
-\DeclareBinding{resize-split-by-10-lines}{Super+Ctrl+Sh+Arrow}{resize split by 10 lines}
-\DeclareBinding{resize-split-by-100-lines}{Super+Ctrl+Sh+Alt+Arrow}{resize split by 100 lines}
-\DeclareBinding{new-tab}{Ctrl+Shift+T}{new tab}
-\DeclareBinding{move-between-tabs}{Ctrl+Shift+Arrow}{move between tabs}
-\DeclareBinding{go-to-tab}{Alt+Numbers}{go to tab}
 \DeclareBinding{scroll-history}{Shift+PgUp/PgDown}{scroll history}
 \DeclareBinding{open-link-in-browser}{Ctrl+LeftMouse}{open link in browser}
 
@@ -186,10 +174,10 @@
 \DeclareBinding{show-sidebar-help}{?}{show sidebar help}
 
 % Notifications
-\DeclareBinding{dismiss-latest}{Super+,}{dismiss latest}
+\DeclareBinding{dismiss-latest}{Super+Alt+,}{dismiss latest}
 \DeclareBinding{dismiss-all}{Super+Shift+,}{dismiss all}
-\DeclareBinding{toggle-silencing}{Super+Ctrl+,}{toggle silencing}
-\DeclareBinding{invoke-most-recent}{Super+Alt+,}{invoke most recent}
+\DeclareBinding{toggle-silencing}{Super+Ctrl+Alt+,}{toggle silencing}
+\DeclareBinding{invoke-most-recent}{Super+,}{act on latest notification}
 \DeclareBinding{open-notification-history}{Super+Sh+Alt+,}{open notification history}
 
 % Style
@@ -200,7 +188,6 @@
 
 % Toggles
 \DeclareBinding{toggle-locking-on-idle}{Super+Ctrl+I}{toggle locking on idle}
-\DeclareBinding{night-light-temperature}{Super+Ctrl+N}{night-light temperature}
 \DeclareBinding{laptop-display-on-or-off}{Super+Ctrl+Delete}{laptop display on or off}
 \DeclareBinding{laptop-display-mirroring}{Super+Ctrl+Alt+Delete}{laptop display mirroring}
 \DeclareBinding{top-bar}{Super+Shift+Space}{top bar}
@@ -268,9 +255,37 @@
 \DeclareBinding{maps}{Super+Shift+S}{Google Maps}
 \DeclareBinding{whatsapp}{Super+Sh+Alt+G}{messenger -- WhatsApp}
 \DeclareBinding{google-messenger}{Super+Sh+Ctrl+G}{messenger -- Google}
-\DeclareBinding{docker}{Super+Shift+D}{Docker -- LazyDocker}
 \DeclareBinding{notes}{Super+Shift+O}{Obsidian}
 \DeclareBinding{writing}{Super+Shift+W}{writing -- Omawrite}
 \DeclareBinding{x}{Super+Shift+X}{X}
 \DeclareBinding{x-compose}{Super+Sh+Alt+X}{X Compose}
 \DeclareBinding{youtube}{Super+Shift+Y}{YouTube}
+\DeclareBinding{cycle-layout-back}{Super+Alt+L}{cycle workspace layout backward}
+\DeclareBinding{minimize-window}{Super+M}{minimize window to dock}
+\DeclareBinding{quake-console}{Super+Grave}{toggle Quake console}
+\DeclareBinding{move-to-quake-console}{Super+Sh+Grave}{move window to Quake console}
+\DeclareBinding{move-window-to-monitor}{Super+Sh+Ctrl+Arrow}{move window to monitor}
+\DeclareBinding{world-clock}{Super+Ctrl+Alt+E}{world clock}
+\DeclareBinding{select-all}{Super+A}{select all}
+\DeclareBinding{notification-keyboard}{Super+Ctrl+,}{control notifications by keyboard}
+\DeclareBinding{full-screen-desktop}{Super+Ctrl+Alt+F}{toggle full screen desktop}
+\DeclareBinding{input-language}{Super+I}{next input language}
+\DeclareBinding{input-language-back}{Super+Shift+I}{previous input language}
+
+% Shell essentials and Lazygit
+\DeclareBinding{shell-history}{Ctrl+R}{search command history (fzf)}
+\DeclareBinding{shell-find-file}{ff}{find files with preview}
+\DeclareBinding{shell-edit-file}{eff}{find file and open in editor}
+\DeclareBinding{shell-jump-directory}{cd <name>}{jump to known directory (Zoxide)}
+\DeclareBinding{shell-search-content}{rg <text> [path]}{search file contents}
+\DeclareBinding{shell-tree}{lt}{list two-level directory tree}
+\DeclareBinding{shell-list-hidden}{lsa}{list including hidden files}
+\DeclareBinding{lazygit-launch}{lazygit}{open Git UI in current repository}
+\DeclareBinding{lazygit-panels}{Left/Right}{switch panels}
+\DeclareBinding{lazygit-items}{Up/Down}{select item}
+\DeclareBinding{lazygit-stage}{Space}{stage/unstage selected file}
+\DeclareBinding{lazygit-commit}{c}{commit staged changes}
+\DeclareBinding{lazygit-pull}{p}{pull}
+\DeclareBinding{lazygit-push}{Shift+P}{push}
+\DeclareBinding{lazygit-help}{?}{show available keys}
+\DeclareBinding{lazygit-quit}{q}{quit}

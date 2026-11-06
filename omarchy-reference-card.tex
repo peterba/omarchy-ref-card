@@ -36,6 +36,8 @@
 \PrintBinding{toggle-horizontal-or-vertical}
 \PrintBinding{make-window-sticky-and-floating}
 \PrintBinding{toggle-dwindle-or-scrolling-layout}
+\PrintBinding{cycle-layout-back}
+\PrintBinding{minimize-window}
 \PrintBinding{toggle-pseudo-window-style}
 \PrintBinding{full-screen}
 \PrintBinding{full-width}
@@ -59,6 +61,7 @@
 \PrintBinding{move-window-and-follow}
 \PrintBinding{move-window-without-following}
 \PrintBinding{move-workspace-to-monitor}
+\PrintBinding{move-window-to-monitor}
 }
 \sep
 \panel{
@@ -83,6 +86,8 @@
 \sectionhead{Scratchpad, zoom, and scale}
 \PrintBinding{show-scratchpad-overlay}
 \PrintBinding{move-window-to-scratchpad}
+\PrintBinding{quake-console}
+\PrintBinding{move-to-quake-console}
 \PrintBinding{zoom-in-repeat-for-more}
 \PrintBinding{zoom-fully-out}
 \PrintBinding{next-monitor-scale}
@@ -95,6 +100,7 @@
 \PrintBinding{display-panel}
 \PrintBinding{power-panel}
 \PrintBinding{calendar-panel}
+\PrintBinding{world-clock}
 \PrintBinding{toggle-bar-panel-by-position}
 \PrintBinding{share-menu-localsend}
 \PrintBinding{activity-monitor-btop}
@@ -141,7 +147,6 @@
 \PrintBinding{maps}
 \PrintBinding{whatsapp}
 \PrintBinding{google-messenger}
-\PrintBinding{docker}
 \PrintBinding{notes}
 \PrintBinding{writing}
 \PrintBinding{x}
@@ -149,6 +154,7 @@
 \PrintBinding{youtube}
 \sectionhead{Universal clipboard}
 \PrintBinding{copy}
+\PrintBinding{select-all}
 \PrintBinding{cut-except-in-terminal}
 \PrintBinding{paste}
 \PrintBinding{clipboard-manager}
@@ -174,9 +180,9 @@
 \PrintCardTitle
 \cardsubtitle{Terminal and Editor Commands}
 
-\sectionhead{Tmux}
-\subhead{Prefix: Ctrl+Space (Ctrl+B also works)}
-\PrintStackedBindingPair{split pane}{tmux-split-beside}{tmux-split-below}
+\sectionhead{Herdr}
+\subhead{Prefix: Ctrl+Space (Omarchy defaults)}
+\PrintStackedBindingPair{split pane}{herdr-split-beside}{herdr-split-below}
 \PrintBinding{kill-pane}
 \PrintBinding{toggle-pane-zoom}
 \PrintBinding{split-below-without-prefix}
@@ -184,46 +190,57 @@
 \PrintBinding{kill-pane-without-prefix}
 \PrintBinding{move-between-panes}
 \PrintBinding{resize-panes}
-
-\subhead{Windows}
-\PrintStackedBindingPair{window}{tmux-window-new}{tmux-window-kill}
-\PrintBinding{rename-window}
-\PrintBinding{go-to-window}
-\PrintBinding{move-between-windows}
-\PrintBinding{move-window-left-or-right}
-
-\subhead{Sessions}
-\PrintStackedBindingPair{session}{tmux-session-new}{tmux-session-kill}
-\PrintBinding{rename-session}
-\PrintStackedBindingPair{session}{tmux-session-next}{tmux-session-previous}
-\PrintBinding{move-between-sessions}
-\PrintBinding{list-sessions}
+\subhead{Tabs}
+\PrintStackedBindingPair{tab}{herdr-tab-new}{herdr-tab-close}
+\PrintBinding{herdr-tab-rename}
+\PrintBinding{herdr-tab-jump}
+\PrintBinding{herdr-tab-cycle}
+\PrintBinding{herdr-tab-move}
+\subhead{Workspaces}
+\PrintStackedBindingPair{workspace}{herdr-workspace-new}{herdr-workspace-close}
+\PrintBinding{herdr-workspace-rename}
+\PrintBinding{herdr-workspace-cycle}
+\PrintBinding{herdr-workspace-picker}
 \PrintBinding{detach}
-
-\subhead{Copy mode and general}
+\subhead{Agents and general}
+\PrintBinding{herdr-sidebar}
+\PrintBinding{herdr-notification}
+\PrintBinding{herdr-worktree}
 \PrintBinding{enter-copy-mode}
-\PrintStackedBindingPair{in copy mode}{tmux-copy-select}{tmux-copy-copy}
 \PrintBinding{reload-config}
-\PrintBinding{show-tmux-keybindings}
-\PrintBinding{command-prompt}
-
-\sectionhead{Tmux layout functions}
+\PrintBinding{herdr-help}
+\sectionhead{Herdr layout functions}
 \PrintBinding{dev-layout-editor-ai-terminal}
 \PrintBinding{dev-layout-per-subdirectory}
 \PrintBinding{multi-pane-swarm-layout}
+\note{Run layout functions inside Herdr.}
+
+\sectionhead{Shell essentials}
+\PrintBinding{shell-history}
+\PrintBinding{shell-find-file}
+\PrintBinding{shell-edit-file}
+\PrintBinding{shell-jump-directory}
+\PrintBinding{shell-search-content}
+\PrintBinding{shell-tree}
+\PrintBinding{shell-list-hidden}
 }
 \sep
 \panel{
 \sectionhead{Ghostty terminal}
-\PrintStackedBindingPair{new split}{ghostty-split-below}{ghostty-split-beside}
-\PrintBinding{move-between-splits}
-\PrintBinding{resize-split-by-10-lines}
-\PrintBinding{resize-split-by-100-lines}
-\PrintBinding{new-tab}
-\PrintBinding{move-between-tabs}
-\PrintBinding{go-to-tab}
 \PrintBinding{scroll-history}
 \PrintBinding{open-link-in-browser}
+
+\sectionhead{Lazygit}
+\PrintBinding{lazygit-launch}
+\PrintBinding{lazygit-panels}
+\PrintBinding{lazygit-items}
+\PrintBinding{lazygit-stage}
+\PrintBinding{lazygit-commit}
+\PrintBinding{lazygit-pull}
+\PrintBinding{lazygit-push}
+\PrintBinding{lazygit-help}
+\PrintBinding{lazygit-quit}
+\note{Stage and commit keys apply in the Files panel.}
 
 \sectionhead{File manager}
 \PrintBinding{go-to-path}
@@ -251,6 +268,7 @@
 \PrintBinding{dismiss-latest}
 \PrintBinding{dismiss-all}
 \PrintBinding{toggle-silencing}
+\PrintBinding{notification-keyboard}
 \PrintBinding{invoke-most-recent}
 \PrintBinding{open-notification-history}
 }
@@ -264,10 +282,12 @@
 
 \sectionhead{Toggles}
 \PrintBinding{toggle-locking-on-idle}
-\PrintBinding{night-light-temperature}
 \PrintBinding{laptop-display-on-or-off}
 \PrintBinding{laptop-display-mirroring}
 \PrintBinding{top-bar}
+\PrintBinding{full-screen-desktop}
+\PrintBinding{input-language}
+\PrintBinding{input-language-back}
 \PrintBinding{next-audio-output}
 \PrintBinding{next-media-source}
 \PrintBinding{window-gaps}
@@ -305,14 +325,14 @@
 
 \sectionhead{Customization}
 Window-manager bindings live in
-\CardCode{\char`\~/.config/hypr/bindings.lua}. Tmux bindings live in
-\CardCode{\char`\~/.config/tmux/tmux.conf}. Quick completions live in
+\CardCode{\char`\~/.config/hypr/bindings.lua}. Herdr bindings live in
+\CardCode{\char`\~/.config/herdr/config.toml}. Quick completions live in
 \CardCode{\char`\~/.XCompose}.
 
 \vfill
 \hrule height 0.35pt\vspace{3pt}
 {\fontsize{6.2}{7}\selectfont
-Compiled from \textit{The \CardEdition\ Manual: Hotkeys}, \CardSourceDate.
+Defaults checked against \CardEdition, \CardSourceDate.
 Physical format inspired by the GNU Emacs Reference Card designed by Stephen Gildea.
 App bindings reflect Omarchy defaults and may differ after customization.\par}
 }

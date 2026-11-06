@@ -24,8 +24,8 @@ jobs:
       - name: Check out pinned Omarchy
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: basecamp/omarchy
-          ref: ef6d9e6605b121df15bf310e630e04f0c1119fc8
+          repository: omacom/omarchy
+          ref: ac2690cd7be4f47e4a255f5e2e78d904d436b068
           path: upstream-checkout
           persist-credentials: false
 

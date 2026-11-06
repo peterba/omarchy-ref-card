@@ -20,11 +20,12 @@ o.bind_toggle(
   "Toggle nightlight",
   "nightlight"
 )
+o.bind_hold("ALT + Alt_R", "Push to talk", "start", "Stop", "stop")
 o.bind("SUPER + " .. key, "Generated " .. index, action())
 '''
         self.assertEqual(
             lua_calls(source),
-            [("SUPER + W", "Close window"), ("SUPER + CTRL + N", "Toggle nightlight")],
+            [("SUPER + W", "Close window"), ("SUPER + CTRL + N", "Toggle nightlight"), ("ALT + Alt_R", "Push to talk")],
         )
 
     def test_stock_generated_ranges(self):
@@ -56,6 +57,7 @@ class NormalizationTests(unittest.TestCase):
         self.assertEqual(expand_card_key("Super+Sh+Mute"), {"SUPER+SHIFT+XF86AUDIOMUTE"})
 
     def test_ranges_directions_and_physical_codes(self):
+        self.assertEqual(expand_card_key("RightAlt"), {"ALT+ALT_R"})
         self.assertEqual(expand_card_key("Super+1--4"), {"SUPER+1", "SUPER+2", "SUPER+3", "SUPER+4"})
         self.assertEqual(
             expand_card_key("Super+Arrow"),
@@ -65,11 +67,12 @@ class NormalizationTests(unittest.TestCase):
 
 
 class ConfigFixtureTests(unittest.TestCase):
-    def test_tmux_ghostty_xcompose_and_menu_records(self):
+    def test_tmux_herdr_ghostty_xcompose_and_menu_records(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             fixtures = {
                 "config/tmux/tmux.conf": 'bind -N "Create window" c new-window\nset -g mouse on\n',
+                "config/herdr/config.toml": '[keys]\nprefix = "ctrl+space"\n[ui]\naccent = "blue"\n',
                 "config/ghostty/config": "keybind = control+insert=copy_to_clipboard\nfont-size = 9\n",
                 "default/xcompose": '<Multi_key> <space> <space> : "—"\n# comment\n',
                 "bin/omarchy-menu-keybindings": '  echo "SHIFT ALT,L,Copy URL from Web App,sendshortcut,SHIFT ALT,L,"\n',
@@ -79,7 +82,8 @@ class ConfigFixtureTests(unittest.TestCase):
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(content)
             records = extract_config_records(root)
-            self.assertEqual({label for label, _ in records}, {"tmux", "ghostty", "xcompose", "menu"})
+            self.assertEqual([line for label, line in records if label == "herdr"], ['prefix = "ctrl+space"'])
+            self.assertEqual({label for label, _ in records}, {"tmux", "herdr", "ghostty", "xcompose", "menu"})
 
 
 if __name__ == "__main__":

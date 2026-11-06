@@ -5,6 +5,8 @@ profile = "Omarchy full-install defaults"
 # intentionally reads defaults/bindings.tex, never the ignored personalize.tex.
 [classifications]
 upstream_hyprland = [
+  "input-language", "input-language-back",
+  "cycle-layout-back", "minimize-window", "quake-console", "move-to-quake-console", "move-window-to-monitor", "world-clock", "select-all", "notification-keyboard", "full-screen-desktop",
   "show-the-main-keyboard-bindings", "show-tmux-bindings", "show-herdr-bindings",
   "omarchy-menu", "applications-menu", "system-menu", "lock-computer",
   "close-window", "close-all-windows", "toggle-tiling-or-floating",
@@ -38,27 +40,21 @@ upstream_hyprland = [
   "dismiss-latest", "dismiss-all", "toggle-silencing", "invoke-most-recent",
   "open-notification-history", "pick-a-new-theme", "pick-theme-background",
   "toggle-window-transparency", "toggle-single-window-square-aspect",
-  "toggle-locking-on-idle", "night-light-temperature", "laptop-display-on-or-off",
+  "toggle-locking-on-idle", "laptop-display-on-or-off",
   "laptop-display-mirroring", "top-bar", "next-audio-output", "next-media-source",
   "window-gaps", "set-reminder", "see-reminders", "clear-reminders", "show-time",
   "show-battery", "toggle-weather-notification", "terminal", "tmux-terminal", "herdr",
   "browser", "private-browser", "file-manager", "file-manager-cwd", "music",
   "music-cli", "password-manager", "editor", "calendar", "email", "new-email",
   "ai-primary", "ai-alternate", "signal", "photos", "maps", "whatsapp",
-  "google-messenger", "docker", "notes", "writing", "x", "x-compose", "youtube",
+  "google-messenger", "notes", "writing", "x", "x-compose", "youtube",
 ]
 
 upstream_config = [
+  "herdr-split-beside", "herdr-split-below", "kill-pane", "toggle-pane-zoom", "split-below-without-prefix", "split-beside-without-prefix", "kill-pane-without-prefix", "move-between-panes", "resize-panes", "herdr-tab-new", "herdr-tab-close", "herdr-tab-rename", "herdr-tab-jump", "herdr-tab-cycle", "herdr-tab-move", "herdr-workspace-new", "herdr-workspace-close", "herdr-workspace-rename", "herdr-workspace-cycle", "detach", "enter-copy-mode", "reload-config", "herdr-help",
+
   "copy-current-chromium-webapp-url", "download-current-page-video",
-  "tmux-split-beside", "tmux-split-below", "kill-pane", "toggle-pane-zoom",
-  "split-below-without-prefix", "split-beside-without-prefix",
-  "kill-pane-without-prefix", "move-between-panes", "resize-panes",
-  "tmux-window-new", "tmux-window-kill", "rename-window", "go-to-window",
-  "move-between-windows", "move-window-left-or-right", "tmux-session-new",
-  "tmux-session-kill", "rename-session", "tmux-session-next",
-  "tmux-session-previous", "move-between-sessions", "list-sessions", "detach",
-  "enter-copy-mode", "tmux-copy-select", "tmux-copy-copy", "reload-config",
-  "show-tmux-keybindings", "command-prompt", "emoji-smile", "emoji-cry",
+  "emoji-smile", "emoji-cry",
   "emoji-love", "emoji-victory", "emoji-heart", "emoji-yes", "emoji-no",
   "emoji-middle-finger", "emoji-wish", "emoji-rock", "emoji-kiss",
   "emoji-eyeroll", "wink", "emoji-pray", "emoji-drool", "emoji-money",
@@ -67,9 +63,10 @@ upstream_config = [
 ]
 
 external_default = [
-  "ghostty-split-below", "ghostty-split-beside", "move-between-splits",
-  "resize-split-by-10-lines", "resize-split-by-100-lines", "new-tab",
-  "move-between-tabs", "go-to-tab", "scroll-history", "open-link-in-browser",
+  "shell-history", "shell-search-content", "lazygit-launch", "lazygit-panels", "lazygit-items", "lazygit-stage", "lazygit-commit", "lazygit-pull", "lazygit-push", "lazygit-help", "lazygit-quit",
+  "herdr-workspace-picker", "herdr-sidebar", "herdr-notification", "herdr-worktree",
+
+  "scroll-history", "open-link-in-browser",
   "go-to-path", "preview-arrows-navigate", "go-back-one-folder",
   "show-command-options", "fuzzy-file-search", "toggle-sidebar", "git-controls",
   "search-file-content", "switch-sidebar-editor-focus", "resize-sidebar",
@@ -79,8 +76,9 @@ external_default = [
 ]
 
 manual_derived = [
-  "dev-layout-editor-ai-terminal", "dev-layout-per-subdirectory",
-  "multi-pane-swarm-layout",
-]
+  "shell-find-file", "shell-edit-file", "shell-jump-directory", "shell-tree", "shell-list-hidden",
+  "dev-layout-editor-ai-terminal", "dev-layout-per-subdirectory", "multi-pane-swarm-layout",
+
+  ]
 
 personal_placeholder = ["your-name", "your-email"]

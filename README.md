@@ -12,6 +12,8 @@ reference cards of the late 1980s and early 1990s: dense, restrained,
 typographic, and made to live beside a keyboard. Built in LaTeX on top of Donald
 Knuth's TeX, it is designed first as a printed object—not merely a PDF.
 
+Defaults reviewed against **Omarchy 4.5.0** (6 November 2026).
+
 **Download the printable PDF:**
 
 - [US Letter](https://github.com/peterba/omarchy-ref-card/releases/latest/download/omarchy-reference-card-letter.pdf)
@@ -28,7 +30,7 @@ PDF made for your paper size so the three folding panels line up correctly.
 ## What is on the card?
 
 The card is a compact, two-sided guide to Omarchy's window management, system
-controls, application launchers, capture tools, themes, Tmux, Ghostty, Neovim,
+controls, application launchers, capture tools, themes, Herdr, shell essentials, Lazygit, Ghostty, Neovim,
 and more. It complements the official
 [Omarchy Hotkeys manual](https://learn.omacom.io/2/the-omarchy-manual/53/hotkeys)
 with something you can hold in your hands.
